@@ -24,6 +24,7 @@ public class UserServiceDetails implements UserDetails {
         authority= Arrays.stream(user.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
+//hi
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
