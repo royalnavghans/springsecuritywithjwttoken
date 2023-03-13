@@ -16,17 +16,13 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
     @Autowired
     UserRpo userRepo;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
        Optional<User> userDetails= userRepo.findByName(username);
       return userDetails.map(UserServiceDetails::new).orElseThrow(()->new UsernameNotFoundException("user name not found"));
 
     }
-    public User create(User user) {
-        user.setPass((passwordEncoder.encode(user.getPass())));
-        return userRepo.save(user);
-    }
+
 
 }
